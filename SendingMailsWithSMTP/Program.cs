@@ -1,9 +1,12 @@
 using SendingMailsWithSMTP.Models;
+using SendingMailsWithSMTP.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var confg = builder.Configuration;
 
 builder.Services.Configure<MailSettings>(confg.GetSection("MailSettings"));
+
+builder.Services.AddTransient<IMailingService, MailingService>();
 
 // Add services to the container.
 
